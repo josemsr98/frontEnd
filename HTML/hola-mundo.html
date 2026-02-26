@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hola Mundo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: rgb(36, 17, 17);
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            color: #555;
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .emoji {
+            font-size: 5em;
+            margin-bottom: 20px;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .button:active {
+            transform: scale(0.98);
+        }
+
+        .stats {
+            margin-top: 30px;
+            font-size: 1.1em;
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        .hora {
+            color: #667eea;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="emoji">👋</span>
+        <h1>¡Hola Mundo!</h1>
+        <p>Esta es mi primera página HTML con CSS y JavaScript interactivo.</p>
+        
+        <p class="hora">Hora actual: <span id="reloj">--:--:--</span></p>
+        
+        <button class="button" onclick="incrementarContador()">¡Hazme Click!</button>
+        <button class="button" onclick="cambiarColor()">Cambiar Color</button>
+        
+        <div class="stats">
+            <p>Clicks: <span id="contador">0</span></p>
+        </div>
+    </div>
+
+    <script>
+        let clicks = 0;
+        
+        // Función para incrementar contador
+        function incrementarContador() {
+            clicks++;
+            document.getElementById('contador').textContent = clicks;
+            alert('¡Has hecho ' + clicks + ' clicks!');
+        }
+        
+        // Función para cambiar color de fondo
+        function cambiarColor() {
+            const colores = [
+                'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                'linear-gradient(135deg, #fa709a 0%, #fee140 100%)'
+            ];
+            const indiceAleatorio = Math.floor(Math.random() * colores.length);
+            document.body.style.background = colores[indiceAleatorio];
+        }
+        
+        // Función para mostrar la hora
+        function actualizarHora() {
+            const ahora = new Date();
+            const horas = String(ahora.getHours()).padStart(2, '0');
+            const minutos = String(ahora.getMinutes()).padStart(2, '0');
+            const segundos = String(ahora.getSeconds()).padStart(2, '0');
+            document.getElementById('reloj').textContent = horas + ':' + minutos + ':' + segundos;
+        }
+        
+        // Actualizar hora cada segundo
+        setInterval(actualizarHora, 1000);
+        actualizarHora(); // Primera ejecución inmediata
+    </script>
+</body>
+</html>
